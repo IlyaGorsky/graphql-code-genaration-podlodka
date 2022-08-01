@@ -1,0 +1,7 @@
+fragment EpisodeFragment on Episode {
+  name
+  created
+  characters {
+    status
+  }
+}

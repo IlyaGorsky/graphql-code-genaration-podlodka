@@ -1,0 +1,103 @@
+{
+  "extends": ["plugin:react/recommended", "prettier"],
+  "plugins": ["prettier"],
+  "rules": {
+    "prettier/prettier": ["error"],
+    "react/jsx-uses-react": "off",
+    "react/react-in-jsx-scope": "off",
+    "import/prefer-default-export": "off",
+    "no-empty": ["error", { "allowEmptyCatch": true }],
+    "camelcase": "off",
+    "consistent-return": "off",
+    "no-case-declarations": "off",
+    "class-methods-use-this": "off",
+    "react/prop-types": "off",
+    "react/no-find-dom-node": "off",
+    "no-unused-expressions": "off",
+    "import/first": "off",
+    "simple-import-sort/exports": "off",
+    "template-curly-spacing": ["off"]
+  },
+  "overrides": [
+    {
+      "files": ["*.graphql"],
+      "parser": "@graphql-eslint/eslint-plugin",
+      "parserOptions": {
+        "operations": "./src/**/*.graphql",
+        "schema": "_generated_/schema.graphql"
+      },
+      "plugins": ["@graphql-eslint"],
+      "extends": "plugin:@graphql-eslint/operations-recommended",
+      "rules": {
+        "prettier/prettier": [2, { "parser": "graphql" }],
+        "spaced-comment": "off",
+        // https://github.com/dotansimha/graphql-eslint/tree/master/docs
+        "@graphql-eslint/executable-definitions": "error",
+        "@graphql-eslint/fields-on-correct-type": "error",
+        "@graphql-eslint/fragments-on-composite-type": "error",
+        "@graphql-eslint/known-argument-names": "error",
+        "@graphql-eslint/known-directives": "error",
+        "@graphql-eslint/known-type-names": "error",
+        "@graphql-eslint/no-anonymous-operations": "error",
+        "@graphql-eslint/no-deprecated": "warn",
+        "@graphql-eslint/no-unused-variables": "warn",
+        "@graphql-eslint/provided-required-arguments": "error",
+        "@graphql-eslint/scalar-leafs": "error",
+        "@graphql-eslint/unique-argument-names": "error",
+        "@graphql-eslint/unique-input-field-names": "error",
+        "@graphql-eslint/unique-variable-names": "error",
+        "@graphql-eslint/value-literals-of-correct-type": "error",
+        "@graphql-eslint/variables-are-input-types": "error",
+        "@graphql-eslint/variables-in-allowed-position": "error",
+        "@graphql-eslint/match-document-filename": [
+          "error",
+          {
+            "fileExtension": ".graphql",
+            "query": { "style": "camelCase", "suffix": ".query" },
+            "mutation": { "style": "camelCase", "suffix": ".mutation" },
+            "fragment": { "style": "camelCase", "suffix": ".fragment" }
+          }
+        ]
+      }
+    },
+    {
+      "files": ["*.ts", "*.tsx"],
+      "plugins": ["@typescript-eslint"],
+      "extends": [
+        "plugin:@typescript-eslint/recommended",
+        "plugin:@typescript-eslint/recommended-requiring-type-checking",
+        "plugin:import/typescript"
+      ],
+      "parser": "@typescript-eslint/parser",
+      "parserOptions": {
+        "project": "./tsconfig.json",
+        "ecmaVersion": 2020,
+        "sourceType": "module"
+      },
+      "rules": {
+        "react/prop-types": "off",
+        "no-use-before-define": "off",
+        "@typescript-eslint/no-use-before-define": [
+          "error",
+          {
+            "functions": false,
+            "classes": false
+          }
+        ],
+        "no-console": "error",
+        "no-void": "off",
+        "allowExpressions": "off",
+        "@typescript-eslint/no-explicit-any": "error",
+        "@typescript-eslint/explicit-module-boundary-types": "error",
+        "@typescript-eslint/no-unsafe-assignment": "off",
+        "@typescript-eslint/no-non-null-assertion": "error",
+        "no-unused-vars": "off",
+        "@typescript-eslint/no-unused-vars": [
+          "error",
+          { "vars": "local", "args": "after-used", "ignoreRestSiblings": true }
+        ]
+      }
+    }
+  ],
+  "env": { "es2020": true }
+}

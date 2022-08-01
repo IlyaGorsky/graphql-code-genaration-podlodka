@@ -1,0 +1,8 @@
+#import './episode.fragment.graphql'
+query App($pageArgs: Int) {
+  episodes(page: $pageArgs) {
+    results {
+      ...EpisodeFragment
+    }
+  }
+}
