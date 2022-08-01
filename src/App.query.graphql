@@ -1,8 +1,9 @@
-#import './episode.fragment.graphql'
-query App($pageArgs: Int) {
-  episodes(page: $pageArgs) {
+#import './components/characters.fragment.graphql'
+
+query App {
+  characters {
     results {
-      ...EpisodeFragment
+      ...CharacterFragment
     }
   }
 }

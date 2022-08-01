@@ -1,20 +1,36 @@
-import logo from './logo.svg';
 import './App.css';
+import { Characters, CharactersProps } from './components/characters';
+import { loader } from 'graphql.macro';
+import { useQuery, Status } from './hooks/useQuery';
 
-function App(): JSX.Element {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a className="App-link" href="https://reactjs.org" target="_blank" rel="noopener noreferrer">
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const AppQuery = loader('./app.query.graphql');
+
+function App(): JSX.Element | null {
+  const { data, status } = useQuery<{ characters: { results: CharactersProps['characters'] } }>(AppQuery);
+
+  if (status === Status.FETCHING || status === Status.IDLE) {
+    return (
+      <div className="App">
+        <div className="App-content">
+          <header className="App-header">
+            <h1>loading...</h1>
+          </header>
+        </div>
+      </div>
+    );
+  }
+  if (status === Status.FETCHED) {
+    return (
+      <div className="App">
+        <div className="App-content">
+          <header className="App-header">
+            <Characters characters={data && data.characters.results} />
+          </header>
+        </div>
+      </div>
+    );
+  }
+  return null;
 }
 
 export default App;

@@ -1,8 +1,9 @@
 {
-  "editor.formatOnSave": true,
   "cSpell.words": ["codegen"],
   "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "typescript.format.enable": true
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
 }
