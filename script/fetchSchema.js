@@ -2,11 +2,14 @@ const path = require('path');
 const fs = require('fs');
 const axios = require('axios').default;
 const { getIntrospectionQuery, buildClientSchema, printSchema } = require('graphql/utilities');
+const { logDebugger } = require('./logDebugger');
 
 async function fetchSchema() {
   try {
     // eslint-disable-next-line no-console
     console.log('fetchSchema', 'start', 'https://rickandmortyapi.com/graphql');
+    const query = JSON.stringify({ query: getIntrospectionQuery(), operationName: 'IntrospectionQuery' });
+    logDebugger('query', { query: getIntrospectionQuery() });
     const {
       data: { data: introspection },
     } = await axios({
@@ -16,7 +19,7 @@ async function fetchSchema() {
         Accept: 'application/json',
         'Content-Type': 'application/json',
       },
-      data: JSON.stringify({ query: getIntrospectionQuery(), operationName: 'IntrospectionQuery' }),
+      data: query,
     });
     // eslint-disable-next-line no-console
     console.log('fetchSchema', 'ok');
@@ -38,6 +41,7 @@ function printToFile(dist, schema) {
 }
 
 function printClientSchema(rawSchema) {
+  logDebugger('fetchSchema', rawSchema);
   try {
     const schema = printSchema(rawSchema);
     // eslint-disable-next-line no-console

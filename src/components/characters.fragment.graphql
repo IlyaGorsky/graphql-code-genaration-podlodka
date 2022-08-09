@@ -1,9 +1,0 @@
-fragment CharacterFragment on Character {
-  id
-  name
-  species
-  created
-  status
-  image
-  type
-}

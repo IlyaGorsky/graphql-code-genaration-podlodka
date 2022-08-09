@@ -1,9 +1,9 @@
-#import './components/characters.fragment.graphql'
+#import './components/characterCard/characterCard.fragment.graphql'
 
 query App {
   characters {
     results {
-      ...CharacterFragment
+      ...CharacterCard
     }
   }
 }

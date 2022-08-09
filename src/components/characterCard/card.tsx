@@ -1,10 +1,7 @@
 import './card.css';
+import { CharacterCardProps } from './types';
 
-export interface CardProps {
-  [x: string]: string;
-}
-
-export const Card = (props: CardProps): JSX.Element => {
+export const Card = (props: CharacterCardProps): JSX.Element => {
   // eslint-disable-next-line no-console
   console.log(props);
   return (

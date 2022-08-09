@@ -1,5 +1,5 @@
 {
-  "include": ["src", "plugin", "src/components/.tsx"],
+  "include": ["src", "plugin", "_generated_"],
   "compilerOptions": {
     "target": "es6",
     "strictNullChecks": true,

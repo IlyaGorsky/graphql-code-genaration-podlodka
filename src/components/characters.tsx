@@ -1,14 +1,13 @@
-import { Card, CardProps } from './card/card';
+import { Card } from './characterCard/card';
+import { CharacterCardProps } from './characterCard/types';
 
 import './characters.css';
 
-type CharactersType = CardProps;
-
-export interface CharactersProps {
-  characters: CharactersType[] | null;
+interface CharactersCardProps {
+  characters: CharacterCardProps[];
 }
 
-export const Characters = (props: CharactersProps): JSX.Element | null => {
+export const Characters = (props: CharactersCardProps): JSX.Element | null => {
   // eslint-disable-next-line no-console
   console.log(props);
   if (!props.characters) {
