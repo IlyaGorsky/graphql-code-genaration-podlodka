@@ -17,8 +17,9 @@ extensions:
           extension: .generated.tsx
         config:
           gqlImport: graphql.macro#gql
-          preResolveTypes: false
-          documentNode: "documentNodeImportFragments"
-          exportFragmentSpreadSubTypes: true
+        #   # preResolveTypes: false
+        #   # documentNode: "documentNodeImportFragments"
+        #   # exportFragmentSpreadSubTypes: true
         plugins:
           - typescript-operations
+          - plugin/index.ts
