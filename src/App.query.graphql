@@ -1,7 +1,7 @@
 #import './components/characterCard/characterCard.fragment.graphql'
 
-query App($page: Int = 2) {
-  characters(page: $page) {
+query App {
+  characters {
     results {
       ...CharacterCard
     }

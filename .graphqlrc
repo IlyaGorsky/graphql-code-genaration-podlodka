@@ -9,4 +9,16 @@ extensions:
       ./_generated_/types.d.ts:
         plugins:
           - typescript
+      ./src:
+        preset: near-operation-file
+        presetConfig:
+          baseTypesPath: ../_generated_/types.d
+          folder: _generated_
+          extension: .generated.tsx
+        config:
+          gqlImport: graphql.macro#gql
+          preResolveTypes: false
+          documentNode: "documentNodeImportFragments"
+          exportFragmentSpreadSubTypes: true
+        plugins:
           - typescript-operations

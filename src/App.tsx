@@ -2,12 +2,12 @@ import './App.css';
 import { loader } from 'graphql.macro';
 import { useQuery, Status } from './hooks/useQuery';
 import { Characters } from './components/characters';
-import { AppQuery, AppQueryVariables } from '../_generated_/types';
+import { AppQuery } from './_generated_/App.query.generated';
 
 const AppQueryString = loader('./app.query.graphql');
 
 function App(): JSX.Element | null {
-  const { data, status, errors } = useQuery<AppQuery, AppQueryVariables>(AppQueryString, { page: 3 });
+  const { data, status, errors } = useQuery<AppQuery>(AppQueryString);
 
   if (status === Status.FETCH_ERROR) {
     return (
