@@ -1,5 +1,11 @@
 schema: "_generated_/schema.graphql"
 documents: "./src/**/*.graphql"
-# extensions:
-#   customExtension:
-#     foo: true
+extensions:
+  codegen:
+    hooks:
+      afterOneFileWrite:
+        - prettier --write
+    generates:
+      ./_generated_/types.d.ts:
+        plugins:
+          - typescript

@@ -4,7 +4,7 @@ import { CharacterCardProps } from './characterCard/types';
 import './characters.css';
 
 interface CharactersCardProps {
-  characters: CharacterCardProps[];
+  characters: (CharacterCardProps | null)[];
 }
 
 export const Characters = (props: CharactersCardProps): JSX.Element | null => {
@@ -15,9 +15,7 @@ export const Characters = (props: CharactersCardProps): JSX.Element | null => {
   }
   return (
     <div className="characters">
-      {props.characters.map((character) => (
-        <Card key={character.id} {...character} />
-      ))}
+      {props.characters.map((character) => character && <Card key={character.id} {...character} />)}
     </div>
   );
 };

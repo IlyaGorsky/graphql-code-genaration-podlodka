@@ -2,6 +2,7 @@ import './App.css';
 import { loader } from 'graphql.macro';
 import { useQuery, Status } from './hooks/useQuery';
 import { Characters } from './components/characters';
+import { Query } from '../_generated_/types';
 
 const AppQueryString = loader('./app.query.graphql');
 
@@ -17,9 +18,7 @@ type Character = {
 };
 
 interface ResponseQuery {
-  characters: {
-    results: Character[];
-  };
+  characters: Query['characters'];
 }
 
 function App(): JSX.Element | null {
@@ -49,12 +48,13 @@ function App(): JSX.Element | null {
       </div>
     );
   }
+
   if (status === Status.FETCHED) {
     return (
       <div className="App">
         <div className="App-content">
           <header className="App-header">
-            <Characters characters={(data && data.characters.results) || []} />
+            {<Characters characters={(data && data?.characters?.results) || []} />}
           </header>
         </div>
       </div>

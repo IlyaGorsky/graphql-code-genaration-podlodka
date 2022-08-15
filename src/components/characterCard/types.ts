@@ -1,7 +1,3 @@
-export type CharacterCardProps = {
-  id: number;
-  name: string;
-  status: string;
-  gender: string;
-  image: string;
-};
+import { Character } from '../../../_generated_/types';
+
+export interface CharacterCardProps extends Character {}
