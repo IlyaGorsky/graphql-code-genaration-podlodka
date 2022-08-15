@@ -1,3 +1,7 @@
 export type CharacterCardProps = {
-  [x: string]: string | number;
+  id: number;
+  name: string;
+  status: string;
+  gender: string;
+  image: string;
 };

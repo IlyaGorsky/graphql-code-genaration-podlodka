@@ -1,11 +1,29 @@
 import './App.css';
 import { loader } from 'graphql.macro';
 import { useQuery, Status } from './hooks/useQuery';
+import { Characters } from './components/characters';
 
 const AppQueryString = loader('./app.query.graphql');
 
+type Character = {
+  id: number;
+  name: string;
+  status: string;
+  gender: string;
+  origin: Location;
+  location: Location;
+  image: string;
+  created: string;
+};
+
+interface ResponseQuery {
+  characters: {
+    results: Character[];
+  };
+}
+
 function App(): JSX.Element | null {
-  const { data, status, errors } = useQuery(AppQueryString);
+  const { data, status, errors } = useQuery<ResponseQuery>(AppQueryString);
 
   if (status === Status.FETCH_ERROR) {
     return (
@@ -35,7 +53,9 @@ function App(): JSX.Element | null {
     return (
       <div className="App">
         <div className="App-content">
-          <header className="App-header">{/* Карточки */}</header>
+          <header className="App-header">
+            <Characters characters={(data && data.characters.results) || []} />
+          </header>
         </div>
       </div>
     );

@@ -1,0 +1,5 @@
+schema: "_generated_/schema.graphql"
+documents: "./src/**/*.graphql"
+# extensions:
+#   customExtension:
+#     foo: true
