@@ -2,27 +2,12 @@ import './App.css';
 import { loader } from 'graphql.macro';
 import { useQuery, Status } from './hooks/useQuery';
 import { Characters } from './components/characters';
-import { Query } from '../_generated_/types';
+import { AppQuery, AppQueryVariables } from '../_generated_/types';
 
 const AppQueryString = loader('./app.query.graphql');
 
-type Character = {
-  id: number;
-  name: string;
-  status: string;
-  gender: string;
-  origin: Location;
-  location: Location;
-  image: string;
-  created: string;
-};
-
-interface ResponseQuery {
-  characters: Query['characters'];
-}
-
 function App(): JSX.Element | null {
-  const { data, status, errors } = useQuery<ResponseQuery>(AppQueryString);
+  const { data, status, errors } = useQuery<AppQuery, AppQueryVariables>(AppQueryString, { page: 3 });
 
   if (status === Status.FETCH_ERROR) {
     return (

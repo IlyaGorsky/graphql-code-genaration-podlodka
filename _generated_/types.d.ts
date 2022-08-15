@@ -189,3 +189,31 @@ export type QueryLocationsArgs = {
 export type QueryLocationsByIdsArgs = {
   ids: Array<Scalars['ID']>;
 };
+
+export type AppQueryVariables = Exact<{
+  page?: InputMaybe<Scalars['Int']>;
+}>;
+
+export type AppQuery = {
+  __typename?: 'Query';
+  characters?: {
+    __typename?: 'Characters';
+    results?: Array<{
+      __typename?: 'Character';
+      id?: string | null;
+      name?: string | null;
+      status?: string | null;
+      gender?: string | null;
+      image?: string | null;
+    } | null> | null;
+  } | null;
+};
+
+export type CharacterCardFragment = {
+  __typename?: 'Character';
+  id?: string | null;
+  name?: string | null;
+  status?: string | null;
+  gender?: string | null;
+  image?: string | null;
+};

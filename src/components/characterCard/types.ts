@@ -1,3 +1,3 @@
-import { Character } from '../../../_generated_/types';
+import { CharacterCardFragment } from '../../../_generated_/types';
 
-export interface CharacterCardProps extends Character {}
+export interface CharacterCardProps extends CharacterCardFragment {}

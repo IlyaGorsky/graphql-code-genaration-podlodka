@@ -9,3 +9,4 @@ extensions:
       ./_generated_/types.d.ts:
         plugins:
           - typescript
+          - typescript-operations
