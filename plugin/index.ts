@@ -28,12 +28,15 @@ export const plugin: PluginFunction = (schema, documents, config: RawClientSideB
   const fragments = allAst.definitions.filter(
     (def) => def.kind === Kind.FRAGMENT_DEFINITION
   ) as FragmentDefinitionNode[];
-  const allFragments: LoadedFragment[] = fragments.map((fragment) => ({
-    name: fragment.name.value,
-    onType: fragment.typeCondition.name.value,
-    node: fragment,
-    isExternal: false,
-  }));
+  const allFragments: LoadedFragment[] = fragments.map(
+    (fragment) => ({
+      name: fragment.name.value,
+      onType: fragment.typeCondition.name.value,
+      node: fragment,
+      isExternal: false,
+    }),
+    ...(config.externalFragments || [])
+  );
   const visitor = new MyAwesomeVisitor(schema, allFragments, config, {}, documents);
   const visitorResult = oldVisit(allAst, { leave: visitor as OldVisitor['leave'] });
   //   logDebugger('visitor', visitor.fragments);
