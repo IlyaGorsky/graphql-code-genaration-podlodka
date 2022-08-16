@@ -1,0 +1,25 @@
+schema: "_generated_/schema.graphql"
+documents: "./src/**/*.graphql"
+extensions:
+  codegen:
+    hooks:
+      afterOneFileWrite:
+        - prettier --write
+    generates:
+      ./_generated_/types.d.ts:
+        plugins:
+          - typescript
+      ./src:
+        preset: near-operation-file
+        presetConfig:
+          baseTypesPath: ../_generated_/types.d
+          folder: _generated_
+          extension: .generated.tsx
+        config:
+          gqlImport: graphql.macro#gql
+        #   # preResolveTypes: false
+        #   # documentNode: "documentNodeImportFragments"
+        #   # exportFragmentSpreadSubTypes: true
+        plugins:
+          - typescript-operations
+          - plugin/index.ts
